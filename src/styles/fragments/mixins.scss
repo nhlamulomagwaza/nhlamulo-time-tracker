@@ -1,0 +1,16 @@
+/* GLOBAL TRANSITIONS */
+
+
+
+@mixin globalTransition{
+    transition: .2s ease-in-out;
+}
+
+
+
+/* GLOBAL PADDINGS */
+
+
+@mixin globalPadding{
+    padding:2rem 6rem;
+}

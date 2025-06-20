@@ -1,0 +1,30 @@
+/* FRAGMENT IMPORTS */
+
+
+@import './fragments/variables';
+@import './fragments/mixins';
+
+
+/* CSS RESET */
+
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+html, body {
+  font-family: $global-font;
+  color: $color-text-light;
+  background-color: $color-bg-light;
+  overflow-x: hidden;
+}
+
+body{
+    @include globalPadding;
+}
+
+
+

@@ -1,3 +1,4 @@
+import TimeEntryForm from "./components/TimeEntryForm"
 
 
 function App() {
@@ -5,7 +6,7 @@ function App() {
 
   return (
     <>
-      
+      <TimeEntryForm/>
     </>
   )
 }

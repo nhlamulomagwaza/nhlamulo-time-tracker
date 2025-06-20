@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+/* FONTS */
+
+
+$global-font: 'Roboto', monospace;
+
+
+
+/* COLORS */
+
+
+// =======================
+// 🌞 Light Theme
+// =======================
+$color-bg-light:        #F9FAFB;
+$color-text-light:      #111827;
+$color-primary:         #3B82F6;
+$color-success:         #10B981;
+$color-danger:          #EF4444;
+$color-border-light:    #E5E7EB;
+
+// =======================
+// 🌚 Dark Theme
+// =======================
+$color-bg-dark:         #1F2937;
+$color-text-dark:       #F9FAFB;
+$color-border-dark:     #374151;
+
+// =======================
+// 💡 Shared
+// =======================
+$color-accent:          $color-success;
+$color-button-primary:  $color-primary;
+$color-button-danger:   $color-danger;
+
+
+
+
+
