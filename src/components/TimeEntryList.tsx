@@ -71,7 +71,7 @@ const TimeEntryList: React.FC = () => {
         // List all entries
         entries.map((entry) => (
           <div key={entry.id} className="time-entry-item">
-            <div>{entry.dateCreated instanceof Date ? entry.dateCreated.toLocaleDateString() : entry.dateCreated}</div>
+        <div>{new Date(entry.dateCreated).toLocaleDateString()}</div>
             <div>{entry.taskName}</div>
             <div>{entry.hours}</div>
             <div className="edit-delete">
