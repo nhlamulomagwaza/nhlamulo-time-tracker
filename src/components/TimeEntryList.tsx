@@ -41,12 +41,21 @@ const TimeEntryList: React.FC = () => {
     setLocalEditingEntry(null);
   };
 
+//TOTAL HOURS WORKED
+  const totalHours = entries.reduce((sum, entry) => sum + entry.hours, 0);
+
   /* ------------------------------------------
      RENDER
   ------------------------------------------- */
 
   return (
     <section className="time-entries-list">
+      {/* Total hours */}
+       {entries.length > 0 && (
+    <div className="total-hours">
+      Total Hours Worked: <strong>{totalHours.toFixed(2)}</strong>
+    </div>
+  )}
       {/* Table header (hidden on mobile via SCSS) */}
       <div className="time-entry-item-header">
         <div className="item-header">Date Created</div>

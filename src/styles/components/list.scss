@@ -14,7 +14,17 @@
   flex-direction: column;
   outline: 1px solid white; // Visible border around the list (can be a design choice)
 
-  .no-entries {
+
+  // ---- TOTAL HOURS STYLING ----
+
+.total-hours {
+  text-align: right;
+  margin: 0 2rem 1rem 0;
+  font-size: 1.1rem;
+  color: $color-text-dark;
+}
+
+.no-entries {
     text-align: center;
     padding: 2rem;
     color: $color-text-dark;
