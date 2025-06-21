@@ -86,7 +86,15 @@ const TimeEntriesContext: React.FC<React.PropsWithChildren<{}>> = ({ children })
      CRUD: Entries
   --------------------------------------- */
 
-  const nextId = useRef<number>(1); // Internal counter for generating new IDs
+ const nextId = useRef(
+    (() => {
+      if (entries.length === 0) {
+             return 1;
+      }
+           const maxId = Math.max(...entries.map(entry => Number(entry.id) || 0));
+      return maxId + 1;
+    })()
+  ); // Internal counter for generating new IDs
 
   const addTimeEntry = (newTaskName: string, newHours: number) => {
     const newEntry: TimeEntry = {
