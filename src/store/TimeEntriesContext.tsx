@@ -94,7 +94,7 @@ const TimeEntriesContext: React.FC<React.PropsWithChildren<{}>> = ({ children })
            const maxId = Math.max(...entries.map(entry => Number(entry.id) || 0));
       return maxId + 1;
     })()
-  ); // Internal counter for generating new IDs
+  ); // Internal counter for generating new IDs for the tasks
 
   const addTimeEntry = (newTaskName: string, newHours: number) => {
     const newEntry: TimeEntry = {
