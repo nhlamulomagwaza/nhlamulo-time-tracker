@@ -1,51 +1,62 @@
-import { useContext, useState } from "react" // Import useState
+import { useContext, useState } from "react"
 import { AppContext, type AppContextType } from "../store/TimeEntriesContext.tsx";
 import '../styles/components/form.scss';
 import toast from "react-hot-toast";
 
 const TimeEntryForm = () => {
-    const { taskName, setTaskName, hours, setHours } = useContext(AppContext as React.Context<AppContextType>);
+   
+    const { taskName, setTaskName, hours, setHours, addTimeEntry } = useContext(AppContext as React.Context<AppContextType>);
 
-  
     const [taskNameError, setTaskNameError] = useState<boolean>(false);
     const [hoursError, setHoursError] = useState<boolean>(false);
 
-    const inputsValidation = (): boolean => { 
+    const inputsValidation = (): boolean => {
         let isValid = true;
-
 
         setTaskNameError(false);
         setHoursError(false);
 
-        if (!taskName.trim() && (hours === 0 || !hours)) { 
+     
+        const hoursAsNumber = Number(hours);
+
+        if (!taskName.trim() && (hours === '' || isNaN(hoursAsNumber) || hoursAsNumber <= 0)) {
             toast.error('Please fill in all the fields');
             setTaskNameError(true);
             setHoursError(true);
             isValid = false;
         } else {
+      
             if (!taskName.trim()) {
                 toast.error('Please enter a task name');
                 setTaskNameError(true);
                 isValid = false;
             }
 
-            if (Number(hours) <= 0) {
+            if (hours === '' || isNaN(hoursAsNumber) || hoursAsNumber <= 0) {
                 toast.error('Number of hours cannot be negative or zero');
                 setHoursError(true);
                 isValid = false;
             }
         }
-        return isValid; 
+        return isValid;
     }
 
     const handleAddEntry = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
 
-        if (inputsValidation()) { 
+        // Perform validation
+        if (inputsValidation()) {
+
+            const hoursToSubmit = Number(hours);
+
+
+            addTimeEntry(taskName, hoursToSubmit);
+
             toast.success('Time Entry Added Successfully');
+
+    
             setTaskName('');
-            setHours(0);
-   
+            setHours('');
             setTaskNameError(false);
             setHoursError(false);
         }
@@ -64,7 +75,7 @@ const TimeEntryForm = () => {
                             value={taskName}
                             onChange={(e) => {
                                 setTaskName(e.target.value);
-                                setTaskNameError(false); 
+                                setTaskNameError(false);
                             }}
                             className={taskNameError ? 'input-error' : ''}
                         />
@@ -77,10 +88,12 @@ const TimeEntryForm = () => {
                             name="hours-worked"
                             value={hours}
                             onChange={(e) => {
-                                setHours(Number(e.target.value));
-                                setHoursError(false); 
+   
+                                const value = e.target.value;
+                                setHours(value === '' ? '' : Number(value));
+                                setHoursError(false);
                             }}
-                            className={hoursError ? 'input-error' : ''} 
+                            className={hoursError ? 'input-error' : ''}
                         />
                     </div>
                     <div className="form-buttons">

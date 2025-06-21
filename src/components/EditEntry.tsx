@@ -1,6 +1,6 @@
 // src/components/EditEntry.tsx
 import React, { useState, useEffect } from 'react';
-import type { TimeEntry } from '../types';
+import type { TimeEntry } from '../types'; 
 import '../styles/components/edit.scss';
 
 interface EditEntryProps {
@@ -10,17 +10,23 @@ interface EditEntryProps {
 }
 
 const EditEntry: React.FC<EditEntryProps> = ({ entry, onSave, onClose }) => {
-  const [taskName, setTaskName] = useState(entry.task);
+  // Use taskName instead of task
+  const [taskName, setTaskName] = useState(entry.taskName);
   const [hours, setHours] = useState(entry.hours);
 
   useEffect(() => {
-    setTaskName(entry.task);
+ 
+    setTaskName(entry.taskName);
     setHours(entry.hours);
-  }, [entry]);
+  }, [entry]); 
 
   const handleSave = () => {
-    if (!taskName.trim() || hours <= 0) return;
-    onSave({ ...entry, task: taskName.trim(), hours });
+    if (!taskName.trim() || hours <= 0) {
+     
+      return;
+    }
+
+    onSave({ ...entry, taskName: taskName.trim(), hours });
     onClose();
   };
 
