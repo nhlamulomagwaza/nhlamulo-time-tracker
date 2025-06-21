@@ -21,14 +21,14 @@ const TimeEntriesContext: React.FC<React.PropsWithChildren<{}>> = ({ children })
       return savedEntries
         ? JSON.parse(savedEntries)
         : [
-            { id: '1', taskName: 'Clean Kitchen', hours: 3, dateCreated: '2025-06-20' },
-            { id: '2', taskName: 'Code Next.js Project', hours: 1.5, dateCreated: '2025-06-21' },
+            { id: '1', taskName: 'Clean Kitchen', hours: 3, dateCreated: new Date('2025-06-20') },
+            { id: '2', taskName: 'Code Next.js Project', hours: 1.5, dateCreated: new Date('2025-06-21') },
           ];
     } catch (error) {
       console.error("Failed to load entries from local storage:", error);
       return [
-        { id: '1', taskName: 'Clean Kitchen', hours: 3, dateCreated: '2025-06-20' },
-        { id: '2', taskName: 'Code Next.js Project', hours: 1.5, dateCreated: '2025-06-21' },
+        { id: '1', taskName: 'Clean Kitchen', hours: 3, dateCreated: new Date('2025-06-20') },
+        { id: '2', taskName: 'Code Next.js Project', hours: 1.5, dateCreated: new Date('2025-06-21') },
       ];
     }
   });
@@ -101,7 +101,7 @@ const TimeEntriesContext: React.FC<React.PropsWithChildren<{}>> = ({ children })
       id: nextId.current.toString(),
       taskName: newTaskName,
       hours: newHours,
-      dateCreated: new Date().toISOString().split('T')[0], // Format: YYYY-MM-DD
+      dateCreated: new Date(), // Store as Date object
     };
 
     setEntries(prevEntries => [...prevEntries, newEntry]);
@@ -135,7 +135,7 @@ const TimeEntriesContext: React.FC<React.PropsWithChildren<{}>> = ({ children })
 
   const entry = editingEntry;
 
-  // Placeholder handler — possibly for form integration later
+
   const onSave = (_entry: unknown) => {
     // No logic provided
   };
