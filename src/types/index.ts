@@ -1,8 +1,9 @@
 export interface TimeEntry {
   id: string;
-  task: string;
+  taskName: string;
   hours: number;
-  createdAt: Date;
+ dateCreated: Date;
+
 }
 
 
