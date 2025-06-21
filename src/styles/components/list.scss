@@ -18,8 +18,10 @@
   // ---- TOTAL HOURS STYLING ----
 
 .total-hours {
-  text-align: right;
-  margin: 0 2rem 1rem 0;
+  text-align: right; // Align to the right
+  background-color: #181e27;
+  padding:1rem 0.5rem;
+
   font-size: 1.1rem;
   color: $color-text-dark;
 }
