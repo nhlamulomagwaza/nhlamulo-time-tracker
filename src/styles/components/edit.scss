@@ -1,0 +1,64 @@
+/* EDJT TASK MODAL */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background-color: #181e27;
+  color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.modal h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #334258;
+  color: white;
+  font-size: 1rem;
+}
+
+.modal-input::placeholder {
+  color: #cbd5e1;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-save {
+  background-color: lime;
+  color: white;
+}
+
+.btn-cancel {
+  background-color: #4b5563;
+  color: white;
+}

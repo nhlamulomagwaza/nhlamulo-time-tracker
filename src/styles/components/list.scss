@@ -1,0 +1,139 @@
+@import '../fragments/variables.scss';
+@import '../fragments/mixins.scss';
+
+
+
+/* LIST */
+
+.time-entries-list {
+  width: 90%;
+  max-width: 900px;
+  margin: 3rem auto;
+  display: flex;
+  flex-direction: column;
+  outline: 1px solid white;
+
+  .time-entry-item-header {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr 2.5fr;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: #181e27;
+    font-weight: bold;
+    color: white;
+    box-sizing: border-box;
+    gap: 1rem;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .time-entry-item {
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr 2.5fr;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: #334258;
+    color: white;
+    border-bottom: 1px solid white;
+    box-sizing: border-box;
+    gap: 1rem;
+
+    .edit-delete {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+
+      .edit,
+      .delete {
+        padding: 0.5rem 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+        min-width: 70px;
+        white-space: nowrap;
+      }
+
+      .edit {
+        background-color: $color-success;
+      }
+
+      .delete {
+        background-color: $color-danger;
+      }
+    }
+
+
+
+
+
+    /* MEDIA QUERIES */
+
+    @media (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 1rem;
+
+      > div {
+        width: 100%;
+        position: relative;
+        padding-left: 130px;
+        background-color: rgba(255, 255, 255, 0.02); 
+        border-radius: 6px;
+        min-height: 40px;
+
+        &::before {
+          position: absolute;
+          left: 0;
+          top: 0;
+          height: 100%;
+          width: 120px;
+          background-color: rgba(255, 255, 255, 0.05);
+          padding: 0.75rem 1rem;
+          font-weight: bold;
+          color: #9ca3af;
+          font-size: 0.85rem;
+          content: '';
+          display: flex;
+          align-items: center;
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+          white-space: nowrap;
+        }
+
+        &:nth-child(1)::before {
+          content: 'Date Created';
+        }
+
+        &:nth-child(2)::before {
+          content: 'Task Name';
+        }
+
+        &:nth-child(3)::before {
+          content: 'Hours Worked';
+        }
+
+        &:nth-child(4)::before {
+          content: 'Actions';
+        }
+      }
+
+      .edit-delete {
+        justify-content: flex-start;
+
+        .edit,
+        .delete {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}

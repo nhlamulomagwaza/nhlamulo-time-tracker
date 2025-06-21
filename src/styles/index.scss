@@ -17,14 +17,33 @@
 
 html, body {
   font-family: $global-font;
-  color: $color-text-light;
-  background-color: $color-bg-light;
+  color: $color-text-dark;
+  background-color: $color-bg-dark;
   overflow-x: hidden;
 }
+
 
 body{
     @include globalPadding;
 }
+ section{
+//  min-height: 100vh;
+  width:100%;
+} 
 
+.app-title{
+
+  font-size: 2rem;
+  color:$color-text-dark;
+  text-align: center;
+
+
+
+  .app-logo{
+    width:50px;
+    height:50px;
+      margin-bottom: 1rem;
+  }
+}
 
 

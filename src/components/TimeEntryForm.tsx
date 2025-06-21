@@ -1,6 +1,7 @@
 
 import { useContext } from "react"
 import { AppContext, type AppContextType } from "../store/TimeEntriesContext.tsx"; 
+import '../styles/components/form.scss';
 
 const TimeEntryForm = () => {
 
@@ -12,7 +13,7 @@ const TimeEntryForm = () => {
 
 <div className="time-entry-container">
 
-       
+   
         <form className="time-entry-form">
              
                   <div className="form-group">
