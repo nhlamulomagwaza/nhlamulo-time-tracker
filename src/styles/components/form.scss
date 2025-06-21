@@ -1,82 +1,159 @@
 @import '../fragments/variables.scss';
 @import '../fragments/mixins.scss';
 
-/* FORM */
+/* -----------------------------------
+   FORM STYLING FOR TIME ENTRY SECTION
+------------------------------------ */
 
+.time-entry-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 0 15px; // Horizontal padding for consistent spacing
 
-.time-entry-section{
-        display:flex;
-        flex-direction: column;
-         justify-content: center;
-         align-items: center;
-         margin-top: 3rem;
-    .time-entry-container{
-     
+  .time-entry-container {
+    width: 100%;
+    max-width: 800px; // Limit width for large screens
+    background-color: $color-bg-dark; // Dark background for contrast
+    border-radius: 8px; // Rounded corners
+    padding: 20px; // Inner spacing
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); // Subtle shadow for depth
+  }
 
-         
-        .time-entry-form{
-     display:flex;
-        flex-direction: row;
-         justify-content: center;
-         align-items: center;
+  .time-entry-form {
+    display: flex;
+    flex-direction: row; // Inputs side-by-side on larger screens
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; // Allow wrapping on smaller widths
 
-         .form-group{ 
+    .form-group {
+      display: flex;
+      align-items: center;
+      margin: 1rem 0.5rem; // Space around input groups
+      flex-grow: 1; // Allows input to grow with container
 
+      label {
+        margin-right: 0.5rem;
+        color: $color-text-dark;
+        white-space: nowrap; // Prevents label from breaking onto multiple lines
+      }
 
-            label{
-               margin-right: 1rem;
-            }
+      input {
+        padding: 0.6rem 1rem;
+        border-radius: 4px;
+        outline: none;
+        flex-grow: 1; // Expands input to available space
+        max-width: 250px; // Prevents overly wide inputs
+        color: black;
+        background-color: $color-text-dark; // Light input background
+        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out; // Smooth interaction feedback
 
-            input{
-                padding:0.5rem 1rem;
-                border:none;
-                outline:none;
-   margin-right: 1rem;
-                &:first-child{
-                 
-                }
-
-            }
-
-             display:flex;
-        
-             justify-content: center;
-             align-items: center;
-             margin:1rem 0rem;
-
-
-             
-         }
-
-         .form-buttons{
-
-            button{
-
-                border:none;
-                outline:none;
-                padding:0.5rem 1rem;
-                cursor: pointer;
-                background-color: $color-primary;
-                color:$color-text-dark;
-                @include globalTransition;
-
-            &:hover{
-                background-color: $color-accent;
-            }
-            }
-         }
-
+        &:focus {
+          border-color: $color-primary; // Highlight border when focused
+          box-shadow: 0 0 0 2px rgba($color-primary, 0.2); // Glow effect on focus
         }
+      }
     }
+
+    .form-buttons {
+      margin: 1rem 0.5rem;
+
+      button {
+        border: none;
+        outline: none;
+        padding: 0.75rem 1.5rem; // Button size
+        cursor: pointer;
+        background-color: $color-primary; // Primary color
+        color: white;
+        border-radius: 5px;
+        @include globalTransition; // Smooth hover transition
+
+        &:hover {
+          background-color: $color-accent; // Accent color on hover
+        }
+      }
+    }
+  }
 }
 
-
+/* Input error styling: highlights invalid inputs */
 .input-error {
-    border: 2px solid red !important;
-    outline-color: red; 
+  border: 2px solid red !important;
+  outline-color: red;
 }
 
 .input-error:focus {
-    border-color: red;
-    box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25); 
+  border-color: red;
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 0, 0.25);
+}
+
+/* ------------------------------
+   MEDIA QUERIES FOR RESPONSIVENESS
+------------------------------- */
+
+@media (max-width: 768px) {
+  .time-entry-section {
+    padding: 0 10px; // Slightly tighter layout on tablets
+  }
+
+  .time-entry-container {
+    padding: 15px; // Less inner spacing
+  }
+
+  .time-entry-form {
+    flex-direction: column; // Stack form elements vertically
+    align-items: stretch;
+
+    .form-group {
+      margin: 0.75rem 0;
+      flex-direction: column; // Stack label and input
+      align-items: flex-start;
+
+      label {
+        margin-right: 0;
+        margin-bottom: 5px; // Label above input
+        width: 100%;
+      }
+
+      input {
+        width: 100%;
+        max-width: 100%; // Full width input
+      }
+    }
+
+    .form-buttons {
+      margin-top: 1.5rem;
+      width: 100%;
+      text-align: center;
+
+      button {
+        width: 100%; // Full-width button for mobile feel
+        max-width: 300px;
+        padding: 0.8rem 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 360px) {
+  .time-entry-container {
+    padding: 10px; // Tight padding for very small screens
+  }
+
+  .time-entry-form .form-group label {
+    font-size: 0.9em; // Slightly smaller label text
+  }
+
+  .time-entry-form .form-group input {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9em; // Smaller input text and padding
+  }
+
+  .time-entry-form .form-buttons button {
+    padding: 0.7rem 1rem;
+    font-size: 0.9em; // Slightly smaller button text
+  }
 }

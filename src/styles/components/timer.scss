@@ -1,0 +1,176 @@
+/* src/styles/components/timer.scss */
+
+@import '../fragments/variables.scss';
+@import '../fragments/mixins.scss';
+
+/* ------------------------------
+   TIMER CONTAINER STYLING
+------------------------------- */
+.timer-container {
+  background-color: rgba(14, 14, 14, 0.283); // Slight translucent dark background
+  width: 60%; // Main container width
+  border-radius: 8px; // Rounded corners
+  padding: 20px;
+  margin-top: 20px;
+  margin: auto; // Center horizontally
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); // Soft shadow for depth
+  color: $color-text-dark; // Uses global text color
+
+  h3 {
+    color: $color-text-dark;
+    margin-bottom: 15px;
+  }
+}
+
+/* ------------------------------
+   TIMER DISPLAY SECTION
+------------------------------- */
+.timer-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+
+  .timer-task-name {
+    font-size: 1.2em;
+    color: $color-text-dark;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .timer-time {
+    font-size: 2.5rem; // Big and readable timer display
+    font-weight: bold;
+    color: lime; // Vibrant, noticeable color
+    font-family: 'monospace', sans-serif; // Classic timer look
+  }
+}
+
+/* ------------------------------
+   TIMER CONTROL BUTTONS
+------------------------------- */
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px; // Space between buttons
+
+  button {
+    border: none;
+    outline: none;
+    padding: 0.75rem 1.25rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: $color-primary;
+    color: white;
+    font-size: 1em;
+    @include globalTransition;
+
+    &:hover {
+      background-color: $color-accent;
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+  }
+
+  // START button styling
+  .btn-start {
+    background-color: $color-primary;
+
+    &:hover:not(:disabled) {
+      background-color: darken($color-primary, 10%);
+    }
+  }
+
+  // STOP button styling
+  .btn-stop {
+    background-color: #dc3545; // Red for stop
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: #c82333;
+    }
+  }
+
+  // LOG button styling
+  .btn-log {
+    background-color: #007bff; // Blue for save/log
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: #0056b3;
+    }
+  }
+
+  // RESET button styling
+  .btn-reset {
+    background-color: #6c757d; // Grey for reset
+    color: white;
+
+    &:hover:not(:disabled) {
+      background-color: #5a6268;
+    }
+  }
+}
+
+/* ------------------------------
+   RESPONSIVE DESIGN
+------------------------------- */
+
+@media (max-width: 600px) {
+  .timer-container {
+    padding: 15px;
+    margin-top: 15px;
+    width: 100%; // Full width on smaller screens
+  }
+
+  .timer-display {
+    .timer-task-name {
+      font-size: 1em;
+    }
+
+    .timer-time {
+      font-size: 2rem; // Slightly smaller timer on small screens
+    }
+  }
+
+  .timer-controls {
+    flex-direction: column; // Stack buttons vertically
+    gap: 8px;
+
+    button {
+      width: 100%;
+      padding: 0.6rem 1rem;
+      font-size: 0.9em;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .timer-display {
+    .timer-time {
+      font-size: 2.2rem; // Slightly smaller than default
+    }
+  }
+}
+
+// Placeholder for future tweaks at this screen width
+@media (max-width: 992px) {
+  // .timer-time {
+  //   font-size: 2.8rem;
+  // }
+}
+
+@media (max-width: 320px) {
+  .timer-container {
+    padding: 10px;
+  }
+
+  .timer-display .timer-time {
+    font-size: 1.8rem; // Compact timer for smallest phones
+  }
+}

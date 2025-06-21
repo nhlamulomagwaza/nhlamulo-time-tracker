@@ -1,6 +1,7 @@
 // src/components/EditEntry.tsx
+
 import React, { useState, useEffect } from 'react';
-import type { TimeEntry } from '../types'; 
+import type { TimeEntry } from '../types';
 import '../styles/components/edit.scss';
 
 interface EditEntryProps {
@@ -10,22 +11,24 @@ interface EditEntryProps {
 }
 
 const EditEntry: React.FC<EditEntryProps> = ({ entry, onSave, onClose }) => {
-  // Use taskName instead of task
+  // Local state for task name and hours
   const [taskName, setTaskName] = useState(entry.taskName);
   const [hours, setHours] = useState(entry.hours);
 
+  // Update local state if a different entry is passed in (e.g. switching tasks)
   useEffect(() => {
- 
     setTaskName(entry.taskName);
     setHours(entry.hours);
-  }, [entry]); 
+  }, [entry]);
 
+  // Save updated entry after validation
   const handleSave = () => {
     if (!taskName.trim() || hours <= 0) {
-     
+      // Basic validation: required name and positive hours
       return;
     }
 
+    // Save changes and close modal
     onSave({ ...entry, taskName: taskName.trim(), hours });
     onClose();
   };
@@ -34,6 +37,8 @@ const EditEntry: React.FC<EditEntryProps> = ({ entry, onSave, onClose }) => {
     <div className="modal-overlay">
       <div className="modal">
         <h2>Edit Task</h2>
+
+        {/* Task name input */}
         <input
           className="modal-input"
           type="text"
@@ -41,6 +46,8 @@ const EditEntry: React.FC<EditEntryProps> = ({ entry, onSave, onClose }) => {
           onChange={(e) => setTaskName(e.target.value)}
           placeholder="Task name"
         />
+
+        {/* Hours input */}
         <input
           className="modal-input"
           type="number"
@@ -48,6 +55,8 @@ const EditEntry: React.FC<EditEntryProps> = ({ entry, onSave, onClose }) => {
           onChange={(e) => setHours(Number(e.target.value))}
           placeholder="Hours"
         />
+
+        {/* Action buttons */}
         <div className="modal-actions">
           <button className="btn btn-save" onClick={handleSave}>Save</button>
           <button className="btn btn-cancel" onClick={onClose}>Cancel</button>

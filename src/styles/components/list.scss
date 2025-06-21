@@ -1,47 +1,58 @@
 @import '../fragments/variables.scss';
 @import '../fragments/mixins.scss';
 
-
-
-/* LIST */
+/* -----------------------------------
+   LIST OF TIME ENTRIES STYLING
+------------------------------------ */
 
 .time-entries-list {
-  width: 90%;
-  max-width: 900px;
-  margin: 3rem auto;
+  width: 90%; // Responsive width for most screens
+  height: fit-content; // Auto height depending on number of entries
+  max-width: 900px; // Prevent list from stretching too far on large screens
+  margin: 3rem auto; // Center the list with spacing from top
   display: flex;
   flex-direction: column;
-  outline: 1px solid white;
+  outline: 1px solid white; // Visible border around the list (can be a design choice)
 
+  .no-entries {
+    text-align: center;
+    padding: 2rem;
+    color: $color-text-dark;
+    font-style: italic; // Subtle styling to indicate no data yet
+  }
+
+  /* ---- Header row for large screens ---- */
   .time-entry-item-header {
     display: grid;
-    grid-template-columns: 2fr 3fr 2fr 2.5fr;
+    grid-template-columns: 2fr 3fr 2fr 2.5fr; // Space allocation for each column
     align-items: center;
     width: 100%;
     padding: 1rem 2rem;
-    background-color: #181e27;
+    background-color: #181e27; // Slightly darker than entries
     font-weight: bold;
     color: white;
     box-sizing: border-box;
     gap: 1rem;
 
     @media (max-width: 768px) {
-      display: none;
+      display: none; // Hide header on smaller screens in favor of stacked layout
     }
   }
 
+  /* ---- Entry rows ---- */
   .time-entry-item {
     display: grid;
     grid-template-columns: 2fr 3fr 2fr 2.5fr;
     align-items: center;
     width: 100%;
     padding: 1rem 2rem;
-    background-color: #334258;
+    background-color: #334258; // Distinct row background
     color: white;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid white; // Divider between entries
     box-sizing: border-box;
     gap: 1rem;
 
+    /* ---- Actions column (Edit/Delete buttons) ---- */
     .edit-delete {
       display: flex;
       gap: 1rem;
@@ -56,28 +67,23 @@
         font-weight: bold;
         color: white;
         text-align: center;
-        min-width: 70px;
+        min-width: 70px; // Ensures consistent button width
         white-space: nowrap;
       }
 
       .edit {
-        background-color: $color-success;
+        background-color: $color-success; // Green for edit
       }
 
       .delete {
-        background-color: $color-danger;
+        background-color: $color-danger; // Red for delete
       }
     }
 
-
-
-
-
-    /* MEDIA QUERIES */
-
+    /* ---- Responsive adjustments for mobile ---- */
     @media (max-width: 768px) {
       display: flex;
-      flex-direction: column;
+      flex-direction: column; // Stack the entry fields vertically
       align-items: flex-start;
       gap: 0.75rem;
       padding: 1rem;
@@ -85,8 +91,8 @@
       > div {
         width: 100%;
         position: relative;
-        padding-left: 130px;
-        background-color: rgba(255, 255, 255, 0.02); 
+        padding-left: 130px; // Make space for pseudo-label on the left
+        background-color: rgba(255, 255, 255, 0.02); // Light background tint
         border-radius: 6px;
         min-height: 40px;
 
@@ -96,12 +102,12 @@
           top: 0;
           height: 100%;
           width: 120px;
-          background-color: rgba(255, 255, 255, 0.05);
+          background-color: rgba(255, 255, 255, 0.05); // Slightly stronger background for labels
           padding: 0.75rem 1rem;
           font-weight: bold;
-          color: #9ca3af;
+          color: #9ca3af; // Light gray text
           font-size: 0.85rem;
-          content: '';
+          content: ''; // Overridden by nth-child selectors below
           display: flex;
           align-items: center;
           border-top-left-radius: 6px;
@@ -109,6 +115,7 @@
           white-space: nowrap;
         }
 
+        /* Label the entry fields for mobile (mimics header) */
         &:nth-child(1)::before {
           content: 'Date Created';
         }
@@ -127,11 +134,11 @@
       }
 
       .edit-delete {
-        justify-content: flex-start;
+        justify-content: flex-start; // Align actions to the left on mobile
 
         .edit,
         .delete {
-          font-size: 0.9rem;
+          font-size: 0.9rem; // Slightly smaller text for mobile
         }
       }
     }
